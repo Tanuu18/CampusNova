@@ -1,0 +1,44 @@
+.homepage{
+    /* background-color: #0F172A; */
+    min-height: 100vh;
+    background-image:url("../assets/bgimage2.png");
+    background-size: cover;
+}
+
+.hero-title{
+    font-size: 4.5rem;
+    font-family: 'poppins';
+    color: white;
+    
+}
+
+@media(max-width:600px){
+    .hero-title{
+        font-size: 2.5rem;
+        text-align: center;
+    }
+    .para{
+        text-align: center;
+    }
+}
+
+.para{
+    font-size: 18px;
+    font-family: 'poppins';
+    color: white;
+    opacity: 60%;
+    line-height: 2;
+    
+}
+
+.hero-title span{
+    color:rgb(207, 73, 233);
+}
+
+.schoolpic{
+    height: auto;
+    width: 100%;
+    max-width: 420px;
+    
+
+}

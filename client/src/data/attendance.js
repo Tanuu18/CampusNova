@@ -1,0 +1,123 @@
+const attendance = [
+  // ===== Student 1 =====
+  { studentId: 1, date: "2026-07-01", status: "Present" },
+  { studentId: 1, date: "2026-07-02", status: "Present" },
+  { studentId: 1, date: "2026-07-03", status: "Absent" },
+  { studentId: 1, date: "2026-07-04", status: "Present" },
+  { studentId: 1, date: "2026-07-05", status: "Present" },
+  { studentId: 1, date: "2026-07-06", status: "Present" },
+  { studentId: 1, date: "2026-07-07", status: "Present" },
+  { studentId: 1, date: "2026-07-08", status: "Absent" },
+  { studentId: 1, date: "2026-07-09", status: "Present" },
+  { studentId: 1, date: "2026-07-10", status: "Present" },
+
+  // ===== Student 2 =====
+  { studentId: 2, date: "2026-07-01", status: "Present" },
+  { studentId: 2, date: "2026-07-02", status: "Absent" },
+  { studentId: 2, date: "2026-07-03", status: "Present" },
+  { studentId: 2, date: "2026-07-04", status: "Present" },
+  { studentId: 2, date: "2026-07-05", status: "Present" },
+  { studentId: 2, date: "2026-07-06", status: "Absent" },
+  { studentId: 2, date: "2026-07-07", status: "Present" },
+  { studentId: 2, date: "2026-07-08", status: "Present" },
+  { studentId: 2, date: "2026-07-09", status: "Present" },
+  { studentId: 2, date: "2026-07-10", status: "Present" },
+
+  // ===== Student 3 =====
+  { studentId: 3, date: "2026-07-01", status: "Present" },
+  { studentId: 3, date: "2026-07-02", status: "Present" },
+  { studentId: 3, date: "2026-07-03", status: "Present" },
+  { studentId: 3, date: "2026-07-04", status: "Absent" },
+  { studentId: 3, date: "2026-07-05", status: "Present" },
+  { studentId: 3, date: "2026-07-06", status: "Present" },
+  { studentId: 3, date: "2026-07-07", status: "Absent" },
+  { studentId: 3, date: "2026-07-08", status: "Present" },
+  { studentId: 3, date: "2026-07-09", status: "Present" },
+  { studentId: 3, date: "2026-07-10", status: "Present" },
+
+  // ===== Student 4 =====
+  { studentId: 4, date: "2026-07-01", status: "Present" },
+  { studentId: 4, date: "2026-07-02", status: "Present" },
+  { studentId: 4, date: "2026-07-03", status: "Present" },
+  { studentId: 4, date: "2026-07-04", status: "Present" },
+  { studentId: 4, date: "2026-07-05", status: "Absent" },
+  { studentId: 4, date: "2026-07-06", status: "Present" },
+  { studentId: 4, date: "2026-07-07", status: "Present" },
+  { studentId: 4, date: "2026-07-08", status: "Present" },
+  { studentId: 4, date: "2026-07-09", status: "Absent" },
+  { studentId: 4, date: "2026-07-10", status: "Present" },
+
+  // ===== Student 5 =====
+  { studentId: 5, date: "2026-07-01", status: "Present" },
+  { studentId: 5, date: "2026-07-02", status: "Absent" },
+  { studentId: 5, date: "2026-07-03", status: "Present" },
+  { studentId: 5, date: "2026-07-04", status: "Present" },
+  { studentId: 5, date: "2026-07-05", status: "Present" },
+  { studentId: 5, date: "2026-07-06", status: "Present" },
+  { studentId: 5, date: "2026-07-07", status: "Absent" },
+  { studentId: 5, date: "2026-07-08", status: "Present" },
+  { studentId: 5, date: "2026-07-09", status: "Present" },
+  { studentId: 5, date: "2026-07-10", status: "Present" },
+
+  // ===== Student 6 =====
+  { studentId: 6, date: "2026-07-01", status: "Present" },
+  { studentId: 6, date: "2026-07-02", status: "Present" },
+  { studentId: 6, date: "2026-07-03", status: "Present" },
+  { studentId: 6, date: "2026-07-04", status: "Present" },
+  { studentId: 6, date: "2026-07-05", status: "Present" },
+  { studentId: 6, date: "2026-07-06", status: "Absent" },
+  { studentId: 6, date: "2026-07-07", status: "Present" },
+  { studentId: 6, date: "2026-07-08", status: "Present" },
+  { studentId: 6, date: "2026-07-09", status: "Present" },
+  { studentId: 6, date: "2026-07-10", status: "Absent" },
+
+  // ===== Student 7 =====
+  { studentId: 7, date: "2026-07-01", status: "Present" },
+  { studentId: 7, date: "2026-07-02", status: "Present" },
+  { studentId: 7, date: "2026-07-03", status: "Absent" },
+  { studentId: 7, date: "2026-07-04", status: "Present" },
+  { studentId: 7, date: "2026-07-05", status: "Present" },
+  { studentId: 7, date: "2026-07-06", status: "Present" },
+  { studentId: 7, date: "2026-07-07", status: "Present" },
+  { studentId: 7, date: "2026-07-08", status: "Present" },
+  { studentId: 7, date: "2026-07-09", status: "Absent" },
+  { studentId: 7, date: "2026-07-10", status: "Present" },
+
+  // ===== Student 8 =====
+  { studentId: 8, date: "2026-07-01", status: "Present" },
+  { studentId: 8, date: "2026-07-02", status: "Present" },
+  { studentId: 8, date: "2026-07-03", status: "Present" },
+  { studentId: 8, date: "2026-07-04", status: "Absent" },
+  { studentId: 8, date: "2026-07-05", status: "Present" },
+  { studentId: 8, date: "2026-07-06", status: "Present" },
+  { studentId: 8, date: "2026-07-07", status: "Present" },
+  { studentId: 8, date: "2026-07-08", status: "Absent" },
+  { studentId: 8, date: "2026-07-09", status: "Present" },
+  { studentId: 8, date: "2026-07-10", status: "Present" },
+
+  // ===== Student 9 =====
+  { studentId: 9, date: "2026-07-01", status: "Present" },
+  { studentId: 9, date: "2026-07-02", status: "Present" },
+  { studentId: 9, date: "2026-07-03", status: "Present" },
+  { studentId: 9, date: "2026-07-04", status: "Present" },
+  { studentId: 9, date: "2026-07-05", status: "Absent" },
+  { studentId: 9, date: "2026-07-06", status: "Present" },
+  { studentId: 9, date: "2026-07-07", status: "Present" },
+  { studentId: 9, date: "2026-07-08", status: "Present" },
+  { studentId: 9, date: "2026-07-09", status: "Present" },
+  { studentId: 9, date: "2026-07-10", status: "Absent" },
+
+  // ===== Student 10 =====
+  { studentId: 10, date: "2026-07-01", status: "Present" },
+  { studentId: 10, date: "2026-07-02", status: "Absent" },
+  { studentId: 10, date: "2026-07-03", status: "Present" },
+  { studentId: 10, date: "2026-07-04", status: "Present" },
+  { studentId: 10, date: "2026-07-05", status: "Present" },
+  { studentId: 10, date: "2026-07-06", status: "Present" },
+  { studentId: 10, date: "2026-07-07", status: "Absent" },
+  { studentId: 10, date: "2026-07-08", status: "Present" },
+  { studentId: 10, date: "2026-07-09", status: "Present" },
+  { studentId: 10, date: "2026-07-10", status: "Present" },
+];
+
+export default attendance;
