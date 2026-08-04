@@ -1,9 +1,29 @@
-const Announcements = [
-  "PTM will be held on 30 July at 10:00 AM.",
-  "Science Exhibition registration closes on 28 July.",
-  "Unit Test-I starts from 5 August.",
-  "School will remain closed on Monday due to maintenance.",
-  "Submit your Mathematics project before 1 August."
+const announcements = [
+  {
+    id: 1,
+    title: "PTM Meeting",
+    description: "Meeting starts at 10:00 AM in the auditorium.",
+  },
+  {
+    id: 2,
+    title: "Science Exhibition",
+    description: "Registration closes on 28 July.",
+  },
+  {
+    id: 3,
+    title: "Unit Test-I",
+    description: "Examination begins from 5 August.",
+  },
+  {
+    id: 4,
+    title: "School Closed",
+    description: "Monday holiday due to maintenance.",
+  },
+  {
+    id: 5,
+    title: "Math Project",
+    description: "Submit before 1 August.",
+  }
 ];
 
-export default Announcements;
+export default announcements;

@@ -1,52 +1,288 @@
 import Box from '@mui/material/Box'
-import React from 'react'
+import React,{useState} from 'react'
 import homework from '../data/homework'
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItem from '@mui/material/ListItem';
+import Typography from "@mui/material/Typography";
+import Divider from "@mui/material/Divider";
+import Button from "@mui/material/Button";
+import AssignmentIcon from "@mui/icons-material/Assignment";
+import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogActions from "@mui/material/DialogActions";
 
 function Homeworkcard() {
+
+   const [open, setOpen] = useState(false);
+
   return (
     <div className="homeworkcard">
-        <Box sx={{color:"white",
-            minHeight:"150px",
-            width:"650px",
-            mt:2,
-            mr:"50px",
-            ml:"320px" ,
-            mb:"50px",
-            borderRadius:"50px",
-               background:
-    "linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.08))",
-  backdropFilter: "blur(18px)",
-  WebkitBackdropFilter: "blur(18px)",
-  border: "1px solid rgba(255,255,255,0.20)",
-  borderRadius: "50px",
-  boxShadow: "0 20px 40px rgba(0,0,0,0.35)"
-}}>
+        <Box sx={{
+    height: "500px",
+    p: {
+    xs: 3,
+    md: 4
+},
+    borderRadius:"30px",
 
-                <Box> <h3 style={{marginLeft:"10px",textAlign:"center"}}><br/>HomeWork/Assignments</h3><br/>
-    <List sx={{marginTop:0.2}}>
+    background:
+    "linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.08))",
+
+    backdropFilter:"blur(18px)",
+
+    border:"1px solid rgba(255,255,255,0.20)",
+
+    boxShadow: "0 15px 35px rgba(0,0,0,0.35)",
+
+    color:"white",
+
+    borderLeft: "8px solid #8B5CF6",
+
+
+    transition: "all 0.3s ease",
+
+    minHeight:"80px",
+
+"&:hover": {
+    transform: "translateY(-3px)",
+    boxShadow: "0 30px 60px rgba(0,0,0,.45)",
+    border:"1px solid rgba(139,92,246,.6)",
+    borderLeft: "4px solid #8B5CF6",
+}
+}} >
+
+<Box
+sx={{
+    display:"flex",
+    justifyContent:"space-between",
+    alignItems:"center"
+}}
+>
+
+<Box
+sx={{
+    display:"flex",
+    alignItems:"center",
+    gap:1.5
+}}
+>
+
+<AssignmentIcon
+sx={{
+    color:"#C084FC",
+    fontSize:32
+}}
+/>
+
+<Typography
+sx={{
+    fontWeight:700,
+    color:"white",
+    fontSize:{
+        xs:"20px",
+        md:"30px"
+    }
+}}
+>
+Homework
+</Typography>
+
+</Box>
+
+<Button
+endIcon={<ArrowOutwardIcon />}
+sx={{
+    color:"#C084FC",
+    textTransform:"none",
+    fontWeight:600,
+
+    "&:hover":{
+        bgcolor:"rgba(255,255,255,.08)",
+        transform:"translateY(-2px)"
+    }
+}} onClick={() => setOpen(true)}
+>
+View All
+</Button>
+
+</Box>
+
+<Typography
+sx={{
+    color:"#D1D5DB",
+    fontSize:"15px",
+    mb:2
+}}
+>
+Complete your pending assignments on time
+</Typography>
+
+<Divider
+sx={{
+    mb:2,
+    borderColor:"rgba(255,255,255,.12)"
+}}
+/>
+    <List sx={{
+    mt: 1,
+    height: "320px",
+    overflowY: "auto",
+
+    "&::-webkit-scrollbar": {
+      width: "6px",
+    },
+
+    "&::-webkit-scrollbar-thumb": {
+      background: "#8B5CF6",
+      borderRadius: "10px",
+    },
+
+    "&::-webkit-scrollbar-track": {
+      background: "transparent",
+    },}}>
+
+      
     { homework.map((work)=>{
     return (<ListItem>
-        <ListItemButton>
-            
-                    <ListItemText primary={`Subject: ${work.subject}`}/>
-                    <br/>
-                    <ListItemText primary={`Task: ${work.task}`}></ListItemText>
-                    <br/>
-                    <ListItemText primary={`Due-Date: ${work.dueDate}`}></ListItemText>
-               
-        </ListItemButton>
+        <ListItemButton
+sx={{
+    py:2,
+    px:2,
+    borderRadius:"16px",
+
+    transition:"all .3s",
+
+    "&:hover":{
+        bgcolor:"rgba(255,255,255,.08)",
+        transform:"translateY(-2px)"
+    }
+}}
+>
+
+<Box sx={{width:"100%"}}>
+
+<Typography
+sx={{
+    fontWeight:700,
+    fontSize:18,
+    color:"white"
+}}
+>
+{work.subject}
+</Typography>
+
+<Typography
+sx={{
+    mt:.8,
+    color:"#D1D5DB",
+    fontSize:15
+}}
+>
+{work.task}
+</Typography>
+
+<Typography
+sx={{
+    mt:1,
+    color:"#FCA5A5",
+    fontSize:14,
+    fontWeight:600
+}}
+>
+Due : {work.dueDate}
+</Typography>
+
+</Box>
+
+</ListItemButton>
         </ListItem>)
     })}
     
     </List>
      </Box>
         
-        </Box>
+      <Dialog
+  open={open}
+  onClose={() => setOpen(false)}
+  maxWidth="md"
+  fullWidth
+>
+  <DialogTitle
+    sx={{
+      fontSize: "28px",
+      fontWeight: 700,
+      color: "#8B5CF6",
+    }}
+  >
+    📚 All Homework & Assignments
+  </DialogTitle>
+
+  <DialogContent>
+    <List>
+      {homework.map((work) => (
+        <ListItem key={work.id} disablePadding>
+          <ListItemButton
+            sx={{
+              py: 2,
+              borderRadius: "16px",
+
+              "&:hover": {
+                bgcolor: "rgba(139,92,246,.08)",
+              },
+            }}
+          >
+            <Box sx={{ width: "100%" }}>
+              <Typography
+                sx={{
+                  fontWeight: 700,
+                  fontSize: 18,
+                }}
+              >
+                {work.subject}
+              </Typography>
+
+              <Typography
+                sx={{
+                  mt: 0.5,
+                  color: "text.secondary",
+                }}
+              >
+                {work.task}
+              </Typography>
+
+              <Typography
+                sx={{
+                  mt: 1,
+                  color: "#EF4444",
+                  fontWeight: 600,
+                }}
+              >
+                Due: {work.dueDate}
+              </Typography>
+            </Box>
+          </ListItemButton>
+        </ListItem>
+      ))}
+    </List>
+  </DialogContent>
+
+  <DialogActions>
+    <Button
+      variant="contained"
+      onClick={() => setOpen(false)}
+      sx={{
+        borderRadius: "12px",
+      }}
+    >
+      Close
+    </Button>
+  </DialogActions>
+</Dialog>
 
 
     </div>

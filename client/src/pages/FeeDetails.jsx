@@ -9,8 +9,9 @@ import students from '../data/students.js'
 import Feesummarycard from '../components/feesummarycard.jsx'
 import Feeinfocard from '../components/feeinfocard.jsx'
 import Paymenthistorycard from '../components/paymenthistorycard.jsx'
+import Toolbar from '@mui/material/Toolbar'
 
-function FeeDetails() {
+function FeeDetails({Sidx}) {
 
   
   return (
@@ -18,15 +19,70 @@ function FeeDetails() {
         <StudentNavbar/><br/>
    
     <Studentsidebar/>
-    <Box >
-        <Feesummarycard/>
-    </Box>
-    <Box>
-        <Feeinfocard/>
-    </Box>
-    <Box>
-        <Paymenthistorycard/>
-    </Box>
+    <Toolbar/>
+    <Box
+sx={{
+    ml:{
+        xs:2,
+        sm:2,
+        md:"320px"
+    },
+
+    mr:{
+        xs:2,
+        sm:2,
+        md:4
+    },
+
+    mt:{
+        xs:5,
+        md:5
+    }
+}}
+>
+    <Feesummarycard Sidx={Sidx}/>
+</Box>
+
+<Box
+sx={{
+    ml:{
+        xs:2,
+        sm:2,
+        md:"320px"
+    },
+
+    mr:{
+        xs:2,
+        sm:2,
+        md:4
+    },
+
+    mt:4
+}}
+>
+    <Feeinfocard Sidx={Sidx}/>
+</Box>
+
+<Box
+sx={{
+    ml:{
+        xs:2,
+        sm:2,
+        md:"320px"
+    },
+
+    mr:{
+        xs:2,
+        sm:2,
+        md:4
+    },
+
+    mt:4,
+    mb:4
+}}
+>
+    <Paymenthistorycard Sidx={Sidx}/>
+</Box>
     </div>
   )
 }

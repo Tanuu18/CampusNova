@@ -14,12 +14,13 @@ import MenuItem from '@mui/material/MenuItem';
 import logo2 from "../assets/logo2.png";
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { useNavigate } from 'react-router-dom';
 
 
-const pages = ['About Us',<NotificationsIcon sx={{color:"yellow"}}/>];
+const pages = [{title:'Home' , path:"/"},{title:'About Us' , path:'/'},{title:<NotificationsIcon sx={{color:"yellow"}}/>, path:"/"}];
 const settings = ['Profile', 'Dashboard', 'Logout'];
 
-function StudentNavbar() {
+function StudentNavbar({ sidebarOpen, setSidebarOpen }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -38,11 +39,28 @@ function StudentNavbar() {
     setAnchorElUser(null);
   };
 
+  let navigate=useNavigate();
+
   return (
     <AppBar position="fixed" sx={{backgroundColor:"#111827",boxShadow: "0 4px 20px rgba(91, 101, 192, 0.35)"}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <img src={logo2} style={{height:50 , width:50}}/> &nbsp;&nbsp;
+
+          
+          <img
+  src={logo2}
+  alt="CampusNova"
+  style={{
+    height: 45,
+    width: 45,
+    mr: {
+  xs: 1,
+  md: 2
+}
+  }} 
+/>
+
+<Box sx={{ mr: { xs: 1, md: 2 } }} /> &nbsp;&nbsp;
           <Typography
             variant="h4"
             noWrap
@@ -50,77 +68,40 @@ function StudentNavbar() {
             href="#app-bar-with-responsive-menu"
             sx={{
               mr: 2,
-              display: { xs: 'none', md: 'flex' },
+              display:{
+    xs:"none",
+    md:"flex"
+},
               fontFamily: 'monospace',
               fontWeight: 700,
               color: 'inherit',
               textDecoration: 'none',
-            }}
+            }} 
           >
             Campus<span className='nova'>Nova</span>
           </Typography>
 
+         
+
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{ display: { xs: 'block', md: 'none' } }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography sx={{ textAlign: 'center' }}>{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
+    size="large"
+    color="inherit"
+    onClick={() => setSidebarOpen(true)}
+>
+    <MenuIcon />
+</IconButton>
+            
           </Box>
-          {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            LOGO */}
-          {/* </Typography> */}
+         
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } ,justifyContent:"flex-end"}}>
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={()=>navigate(page.path)}
                 sx={{ my: 2, color: 'white', display: 'block' ,mx:4}}
               >
-                {page}
+                {page.title}
               </Button>
             ))}
           </Box>

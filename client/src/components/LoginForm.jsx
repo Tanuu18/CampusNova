@@ -14,7 +14,7 @@ import { useNavigate } from 'react-router-dom';
 import Alert from '@mui/material/Alert';
 
 
-export default function LoginForm(){
+export default function LoginForm({loginpath,role}){
 
     let navigate=useNavigate();
     const [ispasswordstate,setispasswordstate]=useState(false);
@@ -33,7 +33,7 @@ export default function LoginForm(){
             return;
         }else{
            console.log(formdata);
-           navigate("/studentdashboard");
+           navigate(loginpath);
         }
         
         setformdata({
@@ -79,12 +79,12 @@ export default function LoginForm(){
         <form onSubmit={formsubmit}  >
         
         <Stack direction="column" spacing={2}  >
-            <Typography variant="h3" sx={{
-                fontWeight:700,
+            <Typography variant="h4" sx={{
+                fontWeight:600,
                 fontFamily:"poppins",
                 color:"white"
 
-            }}>Login</Typography>
+            }}>Login as {role}</Typography>
             <br/>
           <TextField name="email" id="email"  label="E-mail" variant="outlined" value={formdata.email} placeholder="Enter mail-id" onChange={handleinputchange} type="email"
                       slotProps={{
@@ -164,7 +164,15 @@ export default function LoginForm(){
                 borderRadius:"28px",
                 backgroundColor:"rgb(54, 14, 133);",
                 border:"2px solid white",
-                height:"50px"
+                height:"50px",
+
+                transition:"all 0.2s ease",
+
+               "&:hover":{
+                  backgroundColor:"rgb(54, 14, 133)",   // color same rahega
+                  boxShadow:"0 0 20px rgba(255,255,255,0.35), 0 0 30px rgba(54,14,133,0.7)",
+                  transform:"translateY(-2px)"
+                }
 
                 }} >Login</Button>
 

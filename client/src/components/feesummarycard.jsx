@@ -14,29 +14,51 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import Button from '@mui/material/Button'
 
 
-function Feesummarycard() {
+function Feesummarycard({Sidx}) {
 
-    let idx=2;
-  const student = students[idx];
+    
+  const student = students[Sidx];
 
   const fee = fees.find((item) => {
     return item.studentId === student.id;
 });
 
   return (
-    <Grid container spacing={2} sx={{ml:"310px"}}>
+    <Grid container spacing={2}>
         <Grid size={{xs:12, sm:6, md:3}}>
             <Box
                sx={{
-                   background:"linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.08))",
-                   backdropFilter:"blur(18px)",
-                    border:"1px solid rgba(255,255,255,0.20)",
-                     borderRadius:"25px",
-                      p:3,
-                     textAlign:"center",
-                      minHeight:"140px",
-                      mt:"80px"
-                   }}>
+    p: {
+    xs: 3,
+    md: 4
+},
+    borderRadius:"30px",
+
+    background:
+    "linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.08))",
+
+    backdropFilter:"blur(18px)",
+
+    border:"1px solid rgba(255,255,255,0.20)",
+
+    boxShadow: "0 15px 35px rgba(0,0,0,0.35)",
+
+    color:"white",
+
+    borderLeft: "8px solid #8B5CF6",
+
+
+    transition: "all 0.3s ease",
+
+    minHeight:"80px",
+
+"&:hover": {
+    transform: "translateY(-3px)",
+    boxShadow: "0 30px 60px rgba(0,0,0,.45)",
+    border:"1px solid rgba(139,92,246,.6)",
+    borderLeft: "10px solid #8B5CF6",
+}
+}}>
 
                     <Typography variant="h5" sx={{color:"white"}}>
                     Total Fees
@@ -58,16 +80,38 @@ function Feesummarycard() {
         </Grid>
         <Grid size={{xs:12, sm:6, md:3}}>
             <Box
-               sx={{
-                   background:"linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.08))",
-                   backdropFilter:"blur(18px)",
-                    border:"1px solid rgba(255,255,255,0.20)",
-                     borderRadius:"25px",
-                      p:3,
-                     textAlign:"center",
-                      minHeight:"140px",
-                      mt:"80px"
-                   }}>
+              sx={{
+    p: {
+    xs: 3,
+    md: 4
+},
+    borderRadius:"30px",
+
+    background:
+    "linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.08))",
+
+    backdropFilter:"blur(18px)",
+
+    border:"1px solid rgba(255,255,255,0.20)",
+
+    boxShadow: "0 15px 35px rgba(0,0,0,0.35)",
+
+    color:"white",
+
+    borderLeft: "8px solid #8B5CF6",
+
+
+    transition: "all 0.3s ease",
+
+    minHeight:"80px",
+
+"&:hover": {
+    transform: "translateY(-3px)",
+    boxShadow: "0 30px 60px rgba(0,0,0,.45)",
+    border:"1px solid rgba(139,92,246,.6)",
+    borderLeft: "10px solid #8B5CF6",
+}
+}}>
 
                     <Typography variant="h5" sx={{color:"white"}}>
                     Paid 
@@ -91,19 +135,45 @@ function Feesummarycard() {
         <Grid size={{xs:12, sm:6, md:3}}>
             <Box
                sx={{
-                   background:"linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.08))",
-                   backdropFilter:"blur(18px)",
-                    border:"1px solid rgba(255,255,255,0.20)",
-                     borderRadius:"25px",
-                      p:3,
-                     textAlign:"center",
-                      minHeight:"140px",
-                      mt:"80px"
-                   }}>
+    p: {
+    xs: 3,
+    md: 4
+},
+    borderRadius:"30px",
 
-                    <Typography variant="h5" sx={{color:"white"}}>
+    background:
+    "linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.08))",
+
+    backdropFilter:"blur(18px)",
+
+    border:"1px solid rgba(255,255,255,0.20)",
+
+    boxShadow: "0 15px 35px rgba(0,0,0,0.35)",
+
+    color:"white",
+
+    borderLeft: "8px solid #8B5CF6",
+
+
+    transition: "all 0.3s ease",
+
+    minHeight:"80px",
+
+"&:hover": {
+    transform: "translateY(-3px)",
+    boxShadow: "0 30px 60px rgba(0,0,0,.45)",
+    border:"1px solid rgba(139,92,246,.6)",
+    borderLeft: "10px solid #8B5CF6",
+}
+}}>
+                  <Box sx={{display:"flex"}}>
+                    <Typography variant="h5" sx={{color:"white",mr:2}}>
                     Due 
                    </Typography>
+                    <Button variant="contained">
+                    Pay Now
+                    </Button>
+                    </Box>
 
                    <Typography
                    variant="h4"
@@ -116,25 +186,44 @@ function Feesummarycard() {
                                                                             fontSize:40,
                                                                            color:"#F59E0B"
                                                                            }}/>
-                   </Typography><br/>
-                   <Button variant="contained">
-                    Pay Now
-                    </Button>
+                   </Typography>
                     
                    </Box>
         </Grid>
         <Grid size={{xs:12, sm:6, md:3}}>
             <Box
                sx={{
-                   background:"linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.08))",
-                   backdropFilter:"blur(18px)",
-                    border:"1px solid rgba(255,255,255,0.20)",
-                     borderRadius:"25px",
-                      p:3,
-                     textAlign:"center",
-                      minHeight:"140px",
-                      mt:"80px"
-                   }}>
+    p: {
+    xs: 3,
+    md: 4
+},
+    borderRadius:"30px",
+
+    background:
+    "linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.08))",
+
+    backdropFilter:"blur(18px)",
+
+    border:"1px solid rgba(255,255,255,0.20)",
+
+    boxShadow: "0 15px 35px rgba(0,0,0,0.35)",
+
+    color:"white",
+
+    borderLeft: "8px solid #8B5CF6",
+
+
+    transition: "all 0.3s ease",
+
+    minHeight:"80px",
+
+"&:hover": {
+    transform: "translateY(-3px)",
+    boxShadow: "0 30px 60px rgba(0,0,0,.45)",
+    border:"1px solid rgba(139,92,246,.6)",
+    borderLeft: "10px solid #8B5CF6",
+}
+}}>
 
                     <Typography variant="h5" sx={{color:"white"}}>
                     Status 
@@ -153,7 +242,7 @@ fee.status === "Paid" ? (
 ) : fee.status === "Partial" ? (
     <PendingActionsIcon sx={{ fontSize:40, color:"#F59E0B" }} />
 ) : (
-    <CancelIconIcon sx={{ fontSize:40, color:"#EF4444" }} />
+    <CancelIcon sx={{ fontSize:40, color:"#EF4444" }} />
 )
 }
                    </Typography>

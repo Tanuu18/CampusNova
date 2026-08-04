@@ -10,14 +10,16 @@ import Typography from "@mui/material/Typography";
 
 import students from "../data/students";
 import fees from "../data/fees";
+import HistoryIcon from "@mui/icons-material/History";
+import Divider from "@mui/material/Divider";
 
 import React from 'react'
 
-function Paymenthistorycard() {
+function Paymenthistorycard({Sidx}) {
 
-  let idx = 0;
+  
 
-const student = students[idx];
+const student = students[Sidx];
 
 const fee = fees.find((item) => {
     return item.studentId === student.id;
@@ -25,32 +27,89 @@ const fee = fees.find((item) => {
 
 
   return (
-    <Box
-      sx={{
-   mt:4,
-    p:4,
+     <Box
+   sx={{
+    p: {
+    xs: 3,
+    md: 4
+},
     borderRadius:"30px",
-    background:"linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.08))",
-     backdropFilter:"blur(18px)",
-     border:"1px solid rgba(255,255,255,0.20)",
-     borderRadius:"25px",
-      
-     textAlign:"center",
-      minHeight:"140px",
-     
-    ml:"450px",
-    width:"900px"
-}} >
 
-        <Typography
-         variant="h4"
-        sx={{
+    background:
+    "linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.08))",
+
+    backdropFilter:"blur(18px)",
+
+    border:"1px solid rgba(255,255,255,0.20)",
+
+    boxShadow: "0 15px 35px rgba(0,0,0,0.35)",
+
+    color:"white",
+
+    borderLeft: "8px solid #8B5CF6",
+
+
+    transition: "all 0.3s ease",
+
+    minHeight:"80px",
+
+"&:hover": {
+    transform: "translateY(-3px)",
+    boxShadow: "0 30px 60px rgba(0,0,0,.45)",
+    border:"1px solid rgba(139,92,246,.6)",
+    borderLeft: "10px solid #8B5CF6",
+}
+}}>
+
+        <Box
+sx={{
+    display:"flex",
+    alignItems:"center",
+    gap:1.5
+}}
+>
+
+<HistoryIcon
+sx={{
+    color:"#C084FC",
+    fontSize:32
+}}
+/>
+
+<Typography
+sx={{
     fontWeight:700,
-    mb:3,
-    color:"white"
- }}>
+    color:"white",
+    fontSize:{
+        xs:"20px",
+        md:"30px"
+    }
+}}
+>
 Payment History
-        </Typography>
+</Typography>
+
+</Box>
+
+<Typography
+sx={{
+    color:"#D1D5DB",
+    fontSize:15,
+    mt:1,
+    mb:2,
+    display:"flex",
+    alignItems:"start"
+}}
+>
+Recent fee payment transactions
+</Typography>
+
+<Divider
+sx={{
+    mb:3,
+    borderColor:"rgba(255,255,255,.12)"
+}}
+/>
 
         <TableContainer component={Paper} elevation={0}>
           <Table sx={{backgroundColor:"#F1F5F9"}}> 

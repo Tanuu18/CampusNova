@@ -1,5 +1,5 @@
-.studentdashboard{
+.dashboard{
     background:linear-gradient(135deg, #1F2A44, #3B4D8A);
-    min-height:170vh;
+    min-height:250vh;
     width: 102%;
 }

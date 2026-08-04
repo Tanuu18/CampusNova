@@ -9,7 +9,7 @@ function InProgress() {
       <StudentNavbar/><br/>
    
     <Studentsidebar/>
-      <h1 style={{textAlign:"center",marginTop:"300px",marginLeft:"250px"}}>In Progress...</h1>
+      <h1 style={{textAlign:"center",marginTop:"300px",marginLeft:"250px",color:"white"}}>In Progress...</h1>
     </div>
   );
 }

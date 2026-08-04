@@ -9,6 +9,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import school from "../assets/school.png";
+import LoginAs from '../components/LoginAs';
 
 export default function HomePage(){
   return (
@@ -46,7 +47,7 @@ export default function HomePage(){
                 marginRight:5
             
             }}>
-            <LoginForm/>
+            <LoginAs/>
             </Box>
         </Grid>
 
