@@ -9,12 +9,15 @@ import parentRouter from './routes/parentRoutes.js';
 import attendanceRouter from './routes/attendenceRoutes.js';
 import adminRouter from './routes/adminRoutes.js';
 import feesRouter from './routes/feesRoutes.js';
+import cors from "cors";
+
 dns.setServers(["1.1.1.1","8.8.8.8"]);
 dotenv.config();
 connectDB();
 
 const port=process.env.PORT || 4000
 const app=express();
+app.use(cors());
 app.use(express.json())//middleware
 app.use("/api/user",userRouter);
 app.use("/api/student",studentRouter);

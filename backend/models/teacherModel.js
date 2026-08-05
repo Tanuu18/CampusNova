@@ -31,7 +31,7 @@ const teacherSchema=new mongoose.Schema({
         },
         subjects:[{
              type:String,
-            required:true
+            
         }],
         profileImage:{
                type:String,

@@ -1,0 +1,35 @@
+.teachers{
+    padding:30px;
+}
+.teachers-header{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.teachers-header button{
+    background: #3B82F6;
+    color:white;
+    border:none;
+    padding:10px 18px;
+    border-radius: 8px;
+    cursor:pointer;
+    transition:0.3s;
+}
+.teachers-header button:hover{
+    background: #2563EB;
+}
+.teacher-search{
+    margin:25px 0;
+}
+.teacher-search input{
+    width:300px;
+    padding:10px 15px;
+    border:1px solid #d1d5db;
+    border-radius: 8px;
+    outline:none;
+    font-size:16px;
+}
+.teacher-search input:focus{
+    border-color: #3B82F6;
+}

@@ -1,4 +1,4 @@
-import { addParentByAdmin, addStudentByAdmin, addTeacherByAdmin, adminDashboard, deleteByAdmin, deleteParentByAdmin, getAllParent, getAllStudents, getAllTeacher, updateParentProfileByAdmin, updateStudentProfileByAdmin, updateTeacherProfileByAdmin } from "../controllers/adminController.js";
+import { addParentByAdmin, addStudentByAdmin, addTeacherByAdmin, adminDashboard, deleteByAdmin, deleteParentByAdmin, deleteTeacherByAdmin, getAllParent, getAllStudents, getAllTeacher, updateParentProfileByAdmin, updateStudentProfileByAdmin, updateTeacherProfileByAdmin } from "../controllers/adminController.js";
 import express from 'express'
 import authMiddleware from "../middleware/auth.js";
 import roleMiddleware from "../middleware/roleMiddleware.js";
@@ -14,9 +14,9 @@ adminRouter.delete("/delete/student/:id",authMiddleware,roleMiddleware("admin"),
 adminRouter.get("/teachers",authMiddleware,roleMiddleware("admin"),getAllTeacher);
 adminRouter.post("/teacher",authMiddleware,roleMiddleware("admin"),addTeacherByAdmin);
 adminRouter.put("/teacher/:id",authMiddleware,roleMiddleware("admin"),updateTeacherProfileByAdmin)
-adminRouter.delete("/delete/teacher/:id",authMiddleware,roleMiddleware("admin"),deleteByAdmin);
+adminRouter.delete("/delete/teacher/:id",authMiddleware,roleMiddleware("admin"),deleteTeacherByAdmin);
 
-//parent
+//parent 
 adminRouter.get("/parents",authMiddleware,roleMiddleware("admin"),getAllParent);
 adminRouter.post("/parent",authMiddleware,roleMiddleware("admin"),addParentByAdmin);
 adminRouter.put("/parent/:id",authMiddleware,roleMiddleware("admin"),updateParentProfileByAdmin)

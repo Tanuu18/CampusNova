@@ -38,6 +38,10 @@ export const addFees=async(req,res)=>{
             success:true,message:"Fee record created successfully",fee
         })
     } catch (error) {
+        console.log(error);
+        console.log(error.message);
+        
+        
         res.status(500).json({success:false,message:error.message});
     }
 }

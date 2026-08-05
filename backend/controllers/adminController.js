@@ -116,8 +116,11 @@ export const getAllTeacher=async(req,res)=>{
 }
 
 export const addTeacherByAdmin=async(req,res)=>{
+    console.log(req.body);
+    
     try {
-        const {name,email,password,phone,employeeId,designation,qualification,address,experience,subjects}=req.body;
+        const {name,email,password,phone,employeeId,designation,qualification,
+            address,experience,subjects}=req.body;
         const isEmail = await User.findOne({ email });
         if (isEmail) {
             return res.json({ success: false, message: "user already exists" });
@@ -146,22 +149,28 @@ export const addTeacherByAdmin=async(req,res)=>{
           
         return res.status(201).json({ success: true, message: "teacher added successfully" })
     } catch (error) {
+        console.log(error);
+        
         return res.status(500).json({ success: false, message: error.message })
     }
 }
      
 
 export const updateTeacherProfileByAdmin=async(req,res)=>{
+    console.log(req.params);
+    console.log(req.body);
+    
+    
         try { 
             const {id}=req.params;
-            const {name,email,phone,designation,qualification,address,experience,subjects}=req.body;
+            const {name,email,phone,employeeId,designation,qualification,address,experience,subjects}=req.body;
           await User.findByIdAndUpdate(id,{name,email,phone},{returnDocument:"after"});
        const teacher =  await Teacher.findOneAndUpdate(
             {
              userId:id,
           },
           {
-            
+            employeeId,
             designation,
             qualification,
             address,
@@ -183,7 +192,7 @@ export const deleteTeacherByAdmin=async(req,res)=>{
     const {id}=req.params;
     await Teacher.findOneAndDelete({
         userId:id
-    });
+    });     
     await User.findByIdAndDelete(id);
     return res.status(200).json({success:true,message:"Teacher deleted successfully"});
 }catch(error){
@@ -194,9 +203,14 @@ export const deleteTeacherByAdmin=async(req,res)=>{
 
 export const getAllParent=async(req,res)=>{
    try {
-    const parents=await Parent.find({
-
-     }).populate("userId","name email phone")
+    const parents=await Parent.find({})
+    .populate("userId","name email phone")
+    .populate({
+        path:"studentIds",
+       populate:{
+           path:"userId",
+           select:"name"
+       }})
     return res.status(200).json({success:true,parents:parents}) 
    } catch (error) {
        return res.status(500).json({ success: false, message: error.message })
@@ -205,7 +219,7 @@ export const getAllParent=async(req,res)=>{
 
 export const addParentByAdmin=async(req,res)=>{
     try {
-        const {name,email,password,phone,occupation,address}=req.body;
+        const {name,email,password,phone,occupation,address,studentIds}=req.body;
         const isEmail = await User.findOne({ email });
         if (isEmail) {
             return res.json({ success: false, message: "user already exists" });
@@ -224,7 +238,8 @@ export const addParentByAdmin=async(req,res)=>{
             const parent = await Parent.create({
                 userId: user._id,
                 occupation,
-                address
+                address,
+                studentIds
             });
           
         return res.status(201).json({ success: true, message: "parent added successfully" })
@@ -237,7 +252,7 @@ export const addParentByAdmin=async(req,res)=>{
 export const updateParentProfileByAdmin=async(req,res)=>{
         try { 
             const {id}=req.params;
-            const {name,email,phone,address,occupation}=req.body;
+            const {name,email,phone,address,occupation,studentIds}=req.body;
           await User.findByIdAndUpdate(id,{name,email,phone},{returnDocument:"after"});
        const parent =  await Parent.findOneAndUpdate(
             {
@@ -246,7 +261,7 @@ export const updateParentProfileByAdmin=async(req,res)=>{
           {
            occupation,
             address,
-            
+            studentIds
           },
           {returnDocument:"after"}
 
