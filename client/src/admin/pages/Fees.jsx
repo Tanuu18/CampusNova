@@ -30,8 +30,12 @@ const Fees = () => {
   const fetchFees=async()=>{
      try {
       const {data}= await api.get("/api/fees/show");
+      
+      
         if(data.success){
+          
           setFees(data.fees);
+          
         }
      } catch (error) {
        console.log(error);
@@ -58,7 +62,7 @@ console.log(fees);
   return (
     <>
     <Box sx={{display:"flex", justifyContent:"space-between", alignItems:"center", mb:2, mt:3}}>
-      <Typography variant="h5" fontWeight="bold">
+      <Typography variant="h5" color="primary" fontWeight="bold">
         Fees Management
       </Typography>
       <Button variant="contained"
@@ -203,7 +207,21 @@ console.log(fees);
        </TableBody>
     </Table>
     </TableContainer>
-    <TablePagination
+    <TablePagination sx={{
+      color:"white",
+      "& .MuiTablePagination-selectLabel":{
+        color:"white",
+      },
+      "& .MuiTablePagination-displayRows":{
+        color:"white",
+      },
+      "& .MuiSvgIcon-root":{
+        color:"white",
+      },
+      "& .MuiIconButton-root":{
+        color:"white",
+      },
+    }}
   component="div"
   count={fees.filter((fee) => {
     const matchSearch = fee.studentId?.userId?.name

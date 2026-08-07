@@ -2,7 +2,7 @@ import React, { useEffect,useState } from 'react'
 import ParentForm from '../components/ParentForm'
 import api from '../../utils/axios';
 import {Table,TableBody,TableCell,TableContainer,Paper,Card,CardContent,IconButton,
-    TableHead,TableRow,TablePagination,Chip,Button,Stack, Typography, 
+    TableHead,TableRow,TablePagination,Chip,Button,Stack, Typography, Dialog,
     Box, DialogTitle, DialogContent, DialogActions, TextField, MenuItem} from "@mui/material"
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -14,8 +14,9 @@ const Parent = () => {
     const [selectedParent,setSelectedParent]=useState(null);
     const [search,setSearch]=useState("");
     const [page,setPage]=useState(0);
-    const [rowsPerPage,setRowsPerPage]=useState(10);
-
+    const [rowsPerPage,setRowsPerPage]=useState(5);
+    const [openDelete,setOpenDelete]=useState(false);
+    const [deleteParentId,setDeleteParentId]=useState(null);
     const fetchParents=async()=>{
         try {
            
@@ -30,19 +31,43 @@ const Parent = () => {
             
         }
     }
+    const handleEdit=(parent)=>{
+        setSelectedParent(parent);
+        setOpen(true);
+    }
+    const handleClose=()=>{
+        setOpen(false);
+        setSelectedParent(null);
+    }
+    const handleDelete=async(id)=>{
+      
+      try {
+         await api.delete(`/api/admin/delete/parent/${id}`);
+        await fetchParents();
+         
+      } catch (error) {
+        console.log(error);
+        
+      }
+    }
+    const filteredParents=parents.filter((parent)=>{
+        return (
+            (parent.userId?.name||"").toLowerCase().includes(search.toLowerCase())
+        )
+    })
     useEffect(()=>{
        fetchParents();
     },[])
   return (
     <>
     <Box>
-        <Typography variant="h5" gutterBottom>
+        <Typography variant="h5" color="primary" gutterBottom>
             Parents
         </Typography>
         <Card sx={{mb:3}}>
             <CardContent>
                 <Typography variant="h6">
-                    Total Parents : {parents.length}
+                    Total Parents : {filteredParents.length}
                 </Typography>
             </CardContent>
         </Card>
@@ -51,13 +76,16 @@ const Parent = () => {
             justifyContent:"space-between",
             mb:2,
         }}>
-            <TextField label="Search Parent" value={search} 
+            <TextField label="Search Parent" value={search} sx={{
+            backgroundColor:"white",
+            borderRadius:1,
+        }}
             onChange={(e)=>setSearch(e.target.value)}/>
            <Button variant="contained" 
            startIcon={<AddIcon/>}
            onClick={()=>{setOpen(true);setSelectedParent(null);}}>Add Parent</Button>
         </Box>
-        <TableContainer component={Paper}>
+        <TableContainer component={Paper}>   
             <Table>
                 <TableHead>
                     <TableRow>
@@ -71,20 +99,25 @@ const Parent = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {parents.map((parent)=>(
+                    {filteredParents
+                    .slice(page*rowsPerPage,page*rowsPerPage+rowsPerPage)
+                    .map((parent)=>(
                         <TableRow key={parent._id}>
                                 <TableCell>{parent.userId?.name}</TableCell>
                                 <TableCell>{parent.userId?.email}</TableCell>
                                 <TableCell>{parent.userId?.phone}</TableCell>
                                 <TableCell>{parent.occupation}</TableCell>
                                 <TableCell>
-                                    {parent.studentIds?.length || 0}
+                                    {parent.studentIds?.length?parent.studentIds.map((student)=>student.userId?.name).join(","):"No Students" }
                                 </TableCell>
                                 <TableCell>
-                                    <IconButton color="primary">
+                                    <IconButton color="primary" onClick={()=>handleEdit(parent)}>
                                         <EditIcon/>
                                     </IconButton>
-                                    <IconButton color="primary">
+                                    <IconButton color="error" onClick={()=>{
+                                        setDeleteParentId(parent.userId._id);
+                                        setOpenDelete(true);
+                                        }}>
                                         <DeleteIcon/>
                                     </IconButton>
                                 </TableCell>
@@ -93,9 +126,50 @@ const Parent = () => {
                 </TableBody>
             </Table>
         </TableContainer>
-        
+        <TablePagination
+        sx={{
+      color:"white",
+      "& .MuiTablePagination-selectLabel":{
+        color:"white",
+      },
+      "& .MuiTablePagination-displayRows":{
+        color:"white",
+      },
+      "& .MuiSvgIcon-root":{
+        color:"white",
+      },
+      "& .MuiIconButton-root":{
+        color:"white",
+      },
+    }}
+      rowsPerPageOptions={[5,10,25]}
+         component="div"
+         count={filteredParents.length}
+         page={page}
+         onPageChange={(event,newPage)=>setPage(newPage)}
+         rowsPerPage={rowsPerPage}
+         onRowsPerPageChange={(event)=>{setRowsPerPage(parseInt(event.target.value,10));
+          setPage(0);
+         }}
+         
+         />
     </Box>
-     <ParentForm open={open} onClose={()=>setOpen(false)} 
+    <Dialog 
+    open={openDelete} 
+    onClose={()=>setOpenDelete(false)}>
+          <DialogTitle>Delete Parent</DialogTitle>
+          <DialogContent>
+            Are you sure you want to delete this  record?
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={()=>setOpenDelete(false)}>Cancel</Button>
+            <Button color="error" variant="contained" onClick={()=>{
+              handleDelete(deleteParentId);
+              setOpenDelete(false);
+            }}>Delete</Button>
+          </DialogActions>
+        </Dialog>
+     <ParentForm open={open} onClose={handleClose} 
         fetchParents={fetchParents} selectedParent={selectedParent}/>
     </>
   )

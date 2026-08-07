@@ -21,6 +21,8 @@ const AdminLogin = () => {
         e.preventDefault();
         try {
             const response=await api.post("/api/user/admin/login",formData);
+            console.log(response);
+            
             console.log(response.data);
             localStorage.setItem("token",response.data.token);
             localStorage.setItem("role",response.data.role);

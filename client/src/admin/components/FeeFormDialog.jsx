@@ -64,7 +64,11 @@ const FeeFormDialog = ({open,onClose,fetchFees,selectedFee}) => {
             }
            
             if(data.success){
-                fetchFees();
+                console.log("before");
+                
+                await fetchFees();
+                console.log("after");
+                
                 setFormData({
                     studentId:"",
                     className:"",

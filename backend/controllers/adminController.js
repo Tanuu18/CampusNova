@@ -25,7 +25,6 @@ export const adminDashboard=async(req,res)=>{
        return res.status(500).json({ success: false, message: error.message })
    }
 }
-
 export const getAllStudents=async(req,res)=>{
    try {
     const students=await Student.find({

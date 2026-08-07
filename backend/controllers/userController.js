@@ -24,7 +24,8 @@ const loginUser = async (req, res) => {
             return res.status(403).json({success:false,message:"Access Denied"})
          }
 
-        const token = jwt.sign({ id: exists._id, role: exists.role }, process.env.JWT_SECRET, { expiresIn: "7d" })
+        const token = jwt.sign({ id: exists._id, role: exists.role }, process.env.JWT_SECRET, 
+            { expiresIn: "7d" })
         return res.status(200).json({
             success: true, message: "Login successful", token,role:exists.role
         });
